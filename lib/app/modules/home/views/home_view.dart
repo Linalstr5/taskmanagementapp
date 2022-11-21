@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:taskmanagementapp/app/utils/widget/SideBar.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -15,193 +17,94 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: Colors.blue[100],
         body: Row(
           children: [
-            Expanded(
+            const Expanded(
                 flex: 2,
-                child: Container(
-                  height: Get.height,
-                  color: Colors.blue[100],
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        // logo
-                        Container(
-                          height: 100,
-                          padding: const EdgeInsets.only(top: 30),
-                          width: double.infinity,
-                          alignment: Alignment.topCenter,
-                          child: const Image(
-                            image: const AssetImage('assets/icons/icon.png'),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        ),
-                        SizedBox(
-                          height: 100,
-                          child: Center(
-                            child: InkWell(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    width: 100,
-                                    decoration: Get.currentRoute == '/home'
-                                      ? BoxDecoration(
-                                      borderRadius: BorderRadius.circular(40),
-                                      color: Colors.white,
-                                    )
-                                  : const BoxDecoration(),
-                                    child: Icon(
-                                      Get.currentRoute == '/home'
-                                      ? FontAwesomeIcons.desktop
-                                      : FontAwesomeIcons.desktop,
-                                    color: Colors.grey,
-                                    size: 30,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  const Text(
-                                    'Home',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 16,
-                                     ),
-                                     ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-
-                                                SizedBox(
-                          height: 100,
-                          child: Center(
-                            child: InkWell(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    width: 100,
-                                    decoration: Get.currentRoute == '/task'
-                                      ? BoxDecoration(
-                                      borderRadius: BorderRadius.circular(40),
-                                      color: Colors.white,
-                                    )
-                                  : const BoxDecoration(),
-                                    child: Icon(
-                                      Get.currentRoute == '/task'
-                                      ? FontAwesomeIcons.cube
-                                      : FontAwesomeIcons.cube,
-                                      color: Colors.grey,
-                                      size: 30,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  const Text(
-                                    'Task',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 16,
-                                     ),
-                                     ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-
-                                                SizedBox(
-                          height: 100,
-                          child: Center(
-                            child: InkWell(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    width: 100,
-                                     decoration: Get.currentRoute == '/friends'
-                                    ? BoxDecoration(
-                                      borderRadius: BorderRadius.circular(40),
-                                      color: Colors.white,
-                                    )
-                                    : const BoxDecoration(),
-                                    child: Icon(
-                                      Get.currentRoute == '/friends'
-                                      ? FontAwesomeIcons.person
-                                      : FontAwesomeIcons.person,
-                                      color: Colors.grey,
-                                      size: 30,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  const Text(
-                                    'Friends',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 16,
-                                     ),
-                                     ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-
-                                                SizedBox(
-                          height: 100,
-                          child: Center(
-                            child: InkWell(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    width: 100,
-                                    decoration: Get.currentRoute == '/profile' 
-                                    ? BoxDecoration(
-                                      borderRadius: BorderRadius.circular(40),
-                                      color: Colors.white,
-                                    )
-                                    : const BoxDecoration(),
-                                    child: Icon(
-                                      Get.currentRoute == '/profile'
-                                      ? FontAwesomeIcons.user
-                                      : FontAwesomeIcons.user,
-                                      color: Colors.grey,
-                                      size: 30,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  const Text(
-                                    'Profile',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 16,
-                                     ),
-                                     ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                  ),
-                )),
+                child: SideBar(),
+            ),
             Expanded(
               flex: 15,
-              child: Container(
-                color: Colors.white,
-              ),
+              child: Column(children: [
+                SizedBox(
+                  height: Get.height * 0.1,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 40, right: 40, top: 25),
+                    child: Row(children: [
+                      Column(
+                        // mainAxisAlignment: MainAxisAlignment.start
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Task Management',
+                            style: TextStyle(fontSize: 20),
+                            ),
+                          Text(
+                            'Manage by Lina Lestari',
+                            style: TextStyle(fontSize: 15),
+                            ),  
+                        ],
+                      ),
+                      const Spacer(flex: 1),
+                      Expanded(
+                        flex: 1,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: 
+                                  const EdgeInsets.only(left: 40, right: 10),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(color: Colors.white),
+                          ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(color: Colors.blue),
+                            ),
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Colors.black,
+                            ),
+                            hintText: 'Search', 
+                         ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      const Icon(FontAwesomeIcons.bell),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                     GestureDetector(
+                      onTap: () {
+                        Get.defaultDialog(
+                          title: 'Sign Out',
+                          content: 
+                              Text('Are you sure for sign out?'),
+                            cancel: ElevatedButton(
+                              onPressed: () => Get.back(),
+                              child: Text('Cancel'),  
+                        ),
+                        confirm: ElevatedButton(
+                          onPressed: () => Get.toNamed(Routes.LOGIN),
+                          child: Text('Sign Out'),
+                        ),
+                        );
+                      },
+                       child: Row(
+                         children: [
+                           const Text('Sign Out'),
+                           const SizedBox(
+                          width: 5,
+                        ),
+                        const Icon(FontAwesomeIcons.rightFromBracket),
+                         ],
+                       ),
+                     ),
+                    ]),
+                  ),
+                ),
+              ]),
             )
           ],
         ));
