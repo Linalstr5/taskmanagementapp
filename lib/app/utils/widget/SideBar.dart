@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:taskmanagementapp/app/routes/app_pages.dart';
+import 'package:taskmanagementapp/app/utils/style/AppColors.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({
@@ -15,7 +16,7 @@ class SideBar extends StatelessWidget {
       elevation: 0,
       child: Container(
         height: Get.height,
-        color: Colors.blue[100],
+        color: AppColors.primaryBg,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -52,7 +53,7 @@ class SideBar extends StatelessWidget {
                             Get.currentRoute == '/home'
                             ? FontAwesomeIcons.desktop
                             : FontAwesomeIcons.desktop,
-                          color: Colors.grey,
+                          color: AppColors.primaryText,
                           size: 30,
                           ),
                         ),
@@ -62,7 +63,7 @@ class SideBar extends StatelessWidget {
                         const Text(
                           'Home',
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: AppColors.primaryText,
                             fontSize: 16,
                            ),
                            ),
@@ -92,7 +93,7 @@ class SideBar extends StatelessWidget {
                             Get.currentRoute == '/task'
                             ? FontAwesomeIcons.cube
                             : FontAwesomeIcons.cube,
-                            color: Colors.grey,
+                            color: AppColors.primaryText,
                             size: 30,
                           ),
                         ),
@@ -102,7 +103,7 @@ class SideBar extends StatelessWidget {
                         const Text(
                           'Task',
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: AppColors.primaryText,
                             fontSize: 16,
                            ),
                            ),
@@ -131,7 +132,7 @@ class SideBar extends StatelessWidget {
                             Get.currentRoute == '/friends'
                             ? FontAwesomeIcons.person
                             : FontAwesomeIcons.person,
-                            color: Colors.grey,
+                            color: AppColors.primaryText,
                             size: 30,
                           ),
                         ),
@@ -141,7 +142,7 @@ class SideBar extends StatelessWidget {
                         const Text(
                           'Friends',
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: AppColors.primaryText,
                             fontSize: 16,
                            ),
                            ),
@@ -170,7 +171,7 @@ class SideBar extends StatelessWidget {
                             Get.currentRoute == '/profile'
                             ? FontAwesomeIcons.user
                             : FontAwesomeIcons.user,
-                            color: Colors.grey,
+                            color: AppColors.primaryText,
                             size: 30,
                           ),
                         ),
@@ -180,7 +181,7 @@ class SideBar extends StatelessWidget {
                         const Text(
                           'Profile',
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: AppColors.primaryText,
                             fontSize: 16,
                            ),
                            ),
