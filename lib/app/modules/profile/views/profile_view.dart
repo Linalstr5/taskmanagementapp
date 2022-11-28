@@ -1,95 +1,150 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:taskmanagementapp/app/utils/header.dart';
-import 'package:taskmanagementapp/app/utils/style/AppColors.dart';
-import 'package:taskmanagementapp/app/utils/widget/SideBar.dart';import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 
+
+import '../../../routes/app_pages.dart';
+import '../../../utils/header.dart';
+import '../../../utils/style/AppColors.dart';
+import '../../../utils/widget/MyTask.dart';
+import '../../../utils/widget/SideBar.dart';
+import '../../../utils/widget/profileW.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-
+final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _drawerKey,
-        drawer: const SideBar(),
-        backgroundColor: AppColors.primaryBg,
-        body: Row(
-          children: [
-            !context.isPhone
-            ? const Expanded(
-                flex: 2,
-                child: SideBar(),
-            )
-           : const SizedBox(),
-            Expanded(
-              flex: 15,
-              child: Column(children: [
-              !context.isPhone 
-              ? const header()
-              : Container(
-                padding: EdgeInsets.all(20), 
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      _drawerKey.currentState!.openDrawer();
-                    }, 
-                    icon: Icon(
-                      FontAwesomeIcons.bars,
-                       color: AppColors.primaryText,
-                       ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-            // mainAxisAlignment: MainAxisAlignment.start
-            crossAxisAlignment: CrossAxisAlignment.start,
+      key: _drawerKey,
+      drawer: const SideBar (),
+      backgroundColor: AppColors.primaryBg,
+      body:Row(
+      children: [
+      !context.isPhone
+         ? Expanded(
+            flex: 2,
+            child:  const SideBar(), 
+          )
+          : const SizedBox(),
+        Expanded(
+          flex: 15,
+          child: Column( children: [
+          !context.isPhone  
+          ? const  header() 
+          : Container(
+            padding: EdgeInsets.all(20),
+           child: Row(
             children: [
-              Text(
-                'Task Management',
-                style: TextStyle(fontSize: 20, color: AppColors.primaryText),
-                ),
-              Text(
-                'Manage by Lina Lestari',
-                style: TextStyle(fontSize: 10, color: AppColors.primaryText),
-                ),
-            ],
-          ),
-          const Spacer(),
-          const Icon(FontAwesomeIcons.bell,
-          color: AppColors.primaryText,
-          ),
-          const SizedBox(
+              IconButton(
+                onPressed: () {
+                  _drawerKey.currentState!.openDrawer();
+                }, 
+           icon: Icon(
+            Icons.menu, 
+            color : AppColors.primaryText,
+            ),
+            ), 
+            const SizedBox(
             width: 15,
-          ),
-          ClipRRect(borderRadius: BorderRadius.circular(30),
-          child: CircleAvatar(backgroundColor: Colors.amber, radius: 25,foregroundImage: NetworkImage('https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/27/08/jennifer-lawrence.jpg'),),)
-                    ],
-                   ),
+            ),
+             Column(
+         // mainAxisAlignment: MainAxisAlignment.start,
+         crossAxisAlignment: CrossAxisAlignment.start,
+        children:const [
+          Text(
+            'Task Management' ,
+            style: TextStyle(fontSize: 30, color: AppColors.primaryText),
+            ),
+          Text(
+            'Manage Task Made Easy With Friends',
+             style: TextStyle(fontSize: 16, color: AppColors.primaryText),
+            ),
+        ],
+        ),
+         const Spacer(),
+  
+      GestureDetector  (
+          onTap: () {
+            Get.defaultDialog(title: 'Sign Out',
+            content: const Text('Are You Sure Want to Sign Out?'),
+            cancel: ElevatedButton(
+              onPressed:() => Get.back(),
+               child: const Text('Cancel'),
+               ),
+               confirm: ElevatedButton(
+              onPressed:() => Get.toNamed(Routes.LOGIN),
+               child: const Text('Sign Out'),
+               ),
+            );
+          },
+            child: Row(
+              children: const [
+                 Text('Sign Out', 
+                 style: TextStyle(
+                  color: AppColors.primaryText, 
+                  fontSize: 16),
                  ),
-                 // content / isi page / screen
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(50),
-                    margin:!context.isPhone
-                    ? const EdgeInsets.all(10)
-                    : const EdgeInsets.all(0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: !context.isPhone
-                      ? BorderRadius.circular(50)
-                      : BorderRadius.circular(30),
+                 SizedBox(
+              width: 5,
+            ),
+             Icon(Ionicons.log_out_outline, 
+             color: AppColors.primaryText,
+             size: 30,
+             ),
+              ],
+            ),
+          ),
+        ],
+           ),
+          ),
+          //content / isi page /screen
+
+            Expanded(
+              child: Container(
+              padding: !context.isPhone
+                ? const EdgeInsets.all(50)
+                :  const EdgeInsets.all(20),
+                margin: !context.isPhone
+                 ? const EdgeInsets.all(10)
+                 : const EdgeInsets.all(0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: !context.isPhone
+                   ? BorderRadius.circular(50)
+                   : BorderRadius.circular(30),
+                ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+              ProfileW(),
+                 Text(
+                        'My Task', 
+                        style: TextStyle(
+                          color: AppColors.primaryText, 
+                          fontSize: 25,
+                          ),
+                          ),
+                      SizedBox(
+                      height: 20,
                     ),
-                  ) 
-                )
-              ]),
+              SizedBox(
+                height: 200,
+                 child: MyTask(
+
+              ),
+              ),
+            ]),
+
+
+            ))
+          ]),
             )
-          ],
-        ));
+      ],
+      ),
+    );
   }
 }
