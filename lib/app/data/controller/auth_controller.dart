@@ -21,6 +21,28 @@ class AuthController extends GetxController{
   .signInWithCredential(credential)
   .then((value)) => Get.offAllNamed(Routes.HOME);
 }
+
+// firebase
+CollectionReference users = firestore.collection('users');
+
+  final cekUsers = await users.doc (googleUser.email).get();
+  if (!cekUsers.exist) {
+    users.doc(googleUser.email).set({
+      'uid': _userCredential.user!.uid,
+      'name': googleUser.displayName,
+      'email': googleUser.email,
+      'photo': googleUser.photoUrl,
+      'createdAt': _userCredential!.user!.metadata.creationTime.toString(),
+      'lastLoginAt': 
+            _userCredential!.user!.metadata.creationTime.toString(),
+      // 'list_cari': [L,LI,LIN,LINA]
+    }),
+  } else {
+    users.doc(googleUser.email).set({
+      'lastLoginAt':
+      _userCredential!.user!.metadata.creationTime.toString(),
+    });
+  }
   Future logout() async {
     await FirebaseAuth.instance.signOut();
   }
