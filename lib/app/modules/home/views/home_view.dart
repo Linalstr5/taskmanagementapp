@@ -22,7 +22,7 @@ final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   Widget build(BuildContext context) {
     return Scaffold(
       key: _drawerKey,
-      drawer: const SideBar (),
+      drawer: SizedBox(width: 150,  child: SideBar ()),
       backgroundColor: AppColors.primaryBg,
       body:SafeArea(
         child: Row(
