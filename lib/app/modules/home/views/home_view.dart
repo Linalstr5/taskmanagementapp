@@ -63,7 +63,7 @@ final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
               style: TextStyle(fontSize: 30, color: AppColors.primaryText),
               ),
             Text(
-              'Manage Task Made Easy With Friends',
+              'Manage Task Made Easy',
                style: TextStyle(fontSize: 16, color: AppColors.primaryText),
               ),
           ],
