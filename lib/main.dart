@@ -13,10 +13,17 @@ void main() async {
   )
   runApp(
     GetMaterialApp(
+      stream: Firebase.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting){
+          return const Center(child: CircularProgressIndicator());
+        }
+      return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Application",
-      initialRoute: AppPages.INITIAL,
+      initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
       getPages: AppPages.routes,
-    ),
-  );
+    );
+      }
+  ));
 }
